@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Curadoria Humanista — @ahumanista</title>
+  <style>
+    :root {
+      /* Opt-in to keyword interpolation per modern-web-guidance (animate-to-intrinsic-sizes) */
+      interpolate-size: allow-keywords;
+
+      --bg-page: #fafafa;
+      --bg-surface: #ffffff;
+      --bg-subtle: #f3f4f6;
+      --text-primary: #111827;
+      --text-secondary: #4b5563;
+      --text-muted: #6b7280;
+      --border-color: #dbdbdb;
+      --ig-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      --accent-blue: #0095f6;
+      --accent-blue-hover: #1877f2;
+      --yt-red: #ff0000;
+      --sp-green: #1db954;
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+      --shadow-lg: 0 20px 45px rgba(0, 0, 0, 0.18);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-page: #0a0a0a;
+        --bg-surface: #141414;
+        --bg-subtle: #1f1f1f;
+        --text-primary: #f5f5f5;
+        --text-secondary: #d4d4d4;
+        --text-muted: #a3a3a3;
+        --border-color: #262626;
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-primary);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Top App Bar */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background-color: color-mix(in srgb, var(--bg-surface) 88%, transparent);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .topbar-inner {
+      max-width: 935px;
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      background: var(--ig-gradient);
+      color: #fff;
+      font-size: 0.95rem;
+    }
+
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: transform 0.15s ease, background-color 0.15s ease, opacity 0.15s ease;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background-color: var(--accent-blue);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-blue-hover);
+    }
+
+    .btn-outline {
+      background-color: var(--bg-subtle);
+      color: var(--text-primary);
+      border-color: var(--border-color);
+    }
+
+    .btn-outline:hover {
+      opacity: 0.85;
+    }
+
+    /* Main Container */
+    .container {
+      max-width: 935px;
+      margin: 0 auto;
+      padding: 28px 20px 64px;
+    }
+
+    /* Instagram Profile Header */
+    .profile-header {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 32px;
+      align-items: center;
+      padding-bottom: 28px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .avatar-ring {
+      padding: 4px;
+      border-radius: 50%;
+      background: var(--ig-gradient);
+      display: inline-flex;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .avatar-ring img {
+      width: 112px;
+      height: 112px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--bg-surface);
+      background-color: var(--bg-subtle);
+    }
+
+    .profile-info {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .profile-row-top {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .profile-username {
+      font-size: 1.35rem;
+      font-weight: 600;
+    }
+
+    .profile-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 22px;
+      font-size: 0.92rem;
+      color: var(--text-secondary);
+      list-style: none;
+    }
+
+    .profile-stats strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .profile-bio {
+      font-size: 0.92rem;
+      max-width: 600px;
+    }
+
+    .profile-bio .fullname {
+      font-weight: 700;
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .profile-bio .category {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .profile-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .profile-ext-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--accent-blue);
+      text-decoration: none;
+    }
+
+    .profile-ext-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Feed Tabs */
+    .feed-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      margin-bottom: 24px;
+    }
+
+    .feed-tab {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 14px 4px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-primary);
+      border-top: 2px solid var(--text-primary);
+      margin-top: -1px;
+    }
+
+    /* Featured Post Section */
+    .post-showcase {
+      display: grid;
+      grid-template-columns: minmax(280px, 400px) 1fr;
+      gap: 28px;
+      align-items: start;
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Interactive Post Cover Button */
+    .post-cover-trigger {
+      position: relative;
+      display: block;
+      width: 100%;
+      border: none;
+      background: #1a120b;
+      padding: 0;
+      cursor: pointer;
+      text-align: left;
+      overflow: hidden;
+      aspect-ratio: 4 / 5;
+    }
+
+    .post-cover-trigger img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: left center;
+      display: block;
+      transition: transform 0.35s ease, filter 0.35s ease;
+    }
+
+    .post-cover-trigger:hover img,
+    .post-cover-trigger:focus-visible img {
+      transform: scale(1.03);
+      filter: brightness(0.92);
+    }
+
+    /* Carousel icon in top-right */
+    .carousel-indicator {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Overlay cover badge mimicking slide 1 of the post */
+    .post-cover-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.88) 0%,
+        rgba(0, 0, 0, 0.35) 52%,
+        rgba(0, 0, 0, 0.1) 100%
+      );
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px 20px;
+      color: #ffffff;
+    }
+
+    .post-cover-tag {
+      display: inline-block;
+      align-self: flex-start;
+      background: var(--ig-gradient);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .post-cover-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      line-height: 1.18;
+      margin-bottom: 8px;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+    }
+
+    .post-cover-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 8px;
+      background-color: #ffffff;
+      color: #111827;
+      padding: 10px 16px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    }
+
+    /* Right side of post card */
+    .post-details-pane {
+      padding: 24px 24px 24px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .post-author-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .post-author-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .post-author-meta img {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .post-author-name {
+      font-weight: 700;
+      font-size: 0.92rem;
+    }
+
+    .post-music-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .post-caption {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      background-color: var(--bg-subtle);
+      padding: 16px;
+      border-radius: var(--radius-md);
+      border-left: 3px solid #dc2743;
+    }
+
+    .post-caption strong {
+      color: var(--text-primary);
+    }
+
+    .post-actions-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    /* Inline collapsible list below (animated using interpolate-size & calc-size) */
+    .curadoria-inline-panel {
+      margin-top: 28px;
+      block-size: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: block-size 0.4s ease, opacity 0.3s ease;
+    }
+
+    .curadoria-inline-panel.is-expanded {
+      block-size: auto; /* Fallback for older browsers */
+      block-size: calc-size(auto, size); /* Modern browsers per animate-to-intrinsic-sizes */
+      opacity: 1;
+    }
+
+    .panel-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .panel-header h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    /* Grid of Recommendation Cards */
+    .recommendations-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 20px;
+    }
+
+    .rec-card {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .rec-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.09);
+    }
+
+    .rec-thumb-wrap {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      background-color: #111;
+      overflow: hidden;
+    }
+
+    .rec-thumb-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .slide-pill {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.75);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 999px;
+    }
+
+    .channel-pill {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(4px);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .rec-body {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .rec-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--text-primary);
+    }
+
+    .giovana-comment {
+      background-color: var(--bg-subtle);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      position: relative;
+      flex: 1;
+    }
+
+    .giovana-comment-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+
+    .giovana-comment-header img {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .rec-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .btn-yt {
+      background-color: var(--yt-red);
+      color: #ffffff;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .btn-yt:hover {
+      background-color: #d90000;
+    }
+
+    .btn-sp {
+      background-color: var(--sp-green);
+      color: #ffffff;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .btn-sp:hover {
+      background-color: #189c46;
+    }
+
+    /* Modal Dialog (Light-dismiss per modern-web-guidance) */
+    dialog#curadoriaDialog {
+      margin: auto;
+      width: min(94vw, 900px);
+      max-height: 88vh;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      background-color: var(--bg-surface);
+      color: var(--text-primary);
+      box-shadow: var(--shadow-lg);
+      padding: 0;
+      overflow: hidden;
+    }
+
+    dialog#curadoriaDialog[open] {
+      display: flex;
+      flex-direction: column;
+    }
+
+    dialog#curadoriaDialog::backdrop {
+      background-color: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(4px);
+    }
+
+    .dialog-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 22px;
+      border-bottom: 1px solid var(--border-color);
+      background-color: var(--bg-surface);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+
+    .dialog-header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .dialog-header-left img {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+    }
+
+    .dialog-close-btn {
+      background: var(--bg-subtle);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      border-radius: 999px;
+      width: 34px;
+      height: 34px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .dialog-body {
+      padding: 22px;
+      overflow-y: auto;
+    }
+
+    @media (max-width: 768px) {
+      .profile-header {
+        grid-template-columns: 1fr;
+        text-align: center;
+        justify-items: center;
+        gap: 18px;
+      }
+
+      .profile-row-top,
+      .profile-stats,
+      .profile-links {
+        justify-content: center;
+      }
+
+      .post-showcase {
+        grid-template-columns: 1fr;
+      }
+
+      .post-details-pane {
+        padding: 0 20px 22px;
+      }
+
+      .recommendations-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* MANDATORY Copy-Paste Safety per animate-to-intrinsic-sizes: Disable sizing animations for sensitive users */
+    @media (prefers-reduced-motion: reduce) {
+      .curadoria-inline-panel,
+      .post-cover-trigger img,
+      .rec-card {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Bar -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand-title">
+        <span class="brand-badge" aria-hidden="true">✦</span>
+        <span>Curadoria Humanista</span>
+      </div>
+      <div class="topbar-actions">
+        <a
+          href="https://www.instagram.com/ahumanista/p/DezvMohGtiX/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-outline"
+        >
+          Ver post original ↗
+        </a>
+        <a
+          href="https://www.instagram.com/ahumanista/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-primary"
+        >
+          @ahumanista
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Instagram Profile Header -->
+    <section class="profile-header" aria-label="Perfil do Instagram">
+      <a
+        href="https://www.instagram.com/ahumanista/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="avatar-ring"
+        title="Visitar @ahumanista no Instagram"
+      >
+        <img src="assets/avatar.png" alt="Foto de perfil de Giovanna Biondi (@ahumanista)" />
+      </a>
+
+      <div class="profile-info">
+        <div class="profile-row-top">
+          <h1 class="profile-username">ahumanista</h1>
+          <a
+            href="https://www.instagram.com/ahumanista/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-primary"
+          >
+            Ver perfil no Instagram
+          </a>
+          <a
+            href="https://www.instagram.com/ahumanista/p/DezvMohGtiX/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-outline"
+          >
+            Ver post original ↗
+          </a>
+        </div>
+
+        <ul class="profile-stats">
+          <li><strong>8</strong> recomendações neste post</li>
+          <li><strong>Curadoria</strong> Anti-Alienação</li>
+          <li><strong>YouTube &amp; Spotify</strong> links diretos</li>
+        </ul>
+
+        <div class="profile-bio">
+          <span class="fullname">Giovanna Biondi • A Humanista</span>
+          <span class="category">Psicóloga Clínica | Abordagem Humanista</span>
+          <p>
+            Reflexões sobre psicologia, sociedade, cultura e saúde mental. Clique na publicação abaixo para abrir todas as recomendações comentadas por Giovanna com os links diretos.
+          </p>
+          <div class="profile-links">
+            <a
+              href="https://www.instagram.com/ahumanista/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="profile-ext-link"
+            >
+              🔗 instagram.com/ahumanista
+            </a>
+            <a
+              href="https://www.instagram.com/ahumanista/p/DezvMohGtiX/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="profile-ext-link"
+            >
+              📌 Post original (/p/DezvMohGtiX/)
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Instagram Feed Tab Bar -->
+    <div class="feed-tabs">
+      <div class="feed-tab">
+        <span>▦ Publicação em Destaque</span>
+      </div>
+    </div>
+
+    <!-- Featured Post Card (Click to open recommendations) -->
+    <article class="post-showcase" aria-label="Post Curadoria Anti-Alienação">
+      <button
+        type="button"
+        class="post-cover-trigger"
+        id="openCuradoriaModalBtn"
+        aria-haspopup="dialog"
+        aria-controls="curadoriaDialog"
+        title="Clique para ver os 8 links e comentários da Giovanna"
+      >
+        <img
+          src="assets/post-selfie.png"
+          alt="Foto de capa do post de Giovanna (@ahumanista) no elevador"
+          fetchpriority="high"
+        />
+        <span class="carousel-indicator">❐ 1/10 • Carrossel</span>
+        <div class="post-cover-overlay">
+          <span class="post-cover-tag">Curadoria da Semana 🧠✨</span>
+          <div class="post-cover-title">Curadoria Anti-Alienação</div>
+          <p style="font-size: 0.86rem; opacity: 0.92;">
+            Toque na foto para abrir os 8 vídeos e episódios de podcast recomendados com os comentários da Giovanna.
+          </p>
+          <span class="post-cover-cta">
+            ▶ Ver lista de links e comentários (8)
+          </span>
+        </div>
+      </button>
+
+      <div class="post-details-pane">
+        <div class="post-author-bar">
+          <div class="post-author-meta">
+            <img src="assets/avatar.png" alt="Avatar de @ahumanista" />
+            <div>
+              <div class="post-author-name">ahumanista</div>
+              <div class="post-music-sub">🎵 Elza Soares, BaianaSystem • Libertação</div>
+            </div>
+          </div>
+          <a
+            href="https://www.instagram.com/ahumanista/p/DezvMohGtiX/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-outline"
+          >
+            Ver post original ↗
+          </a>
+        </div>
+
+        <div class="post-caption">
+          <p>
+            <strong>ahumanista</strong> Me diz o que entrou na sua <strong>CURADORIA ANTI-ALIENAÇÃO</strong> da semana? 🧠✨ Me conta nos comentários! Seja um post, um livro, um podcast, ou aquele insight que abriu um portal na sua mente. Vamos trocar referências, não seja bocó, se alimente da cacholinha!
+          </p>
+        </div>
+
+        <p style="font-size: 0.9rem; color: var(--text-secondary);">
+          Clique na foto ao lado para abrir a janela interativa do post ou alterne a lista completa logo abaixo:
+        </p>
+
+        <div class="post-actions-row">
+          <button
+            type="button"
+            class="btn btn-primary"
+            id="openDialogSecondaryBtn"
+          >
+            📂 Abrir Curadoria em Pop-up (8 itens)
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline"
+            id="toggleInlineBtn"
+            aria-expanded="true"
+            aria-controls="inlineCuradoriaPanel"
+          >
+            🔽 Ocultar / Expandir lista na página
+          </button>
+          <a
+            href="https://www.instagram.com/ahumanista/p/DezvMohGtiX/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-outline"
+          >
+            🔗 Ver post original no Instagram
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Inline Expandable List of Recommendations -->
+    <section
+      id="inlineCuradoriaPanel"
+      class="curadoria-inline-panel is-expanded"
+      aria-label="Lista de recomendações da Curadoria Humanista"
+    >
+      <div class="panel-header">
+        <h2>📚 Materiais Recomendados &amp; Comentários da Giovanna</h2>
+        <a
+          href="https://www.instagram.com/ahumanista/p/DezvMohGtiX/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="profile-ext-link"
+        >
+          Ver post original no Instagram ↗
+        </a>
+      </div>
+      <div class="recommendations-grid" id="inlineGrid"></div>
+    </section>
+  </main>
+
+  <!-- Light-Dismiss Modal Dialog per modern-web-guidance -->
+  <dialog id="curadoriaDialog" closedby="any" aria-labelledby="dialogTitle">
+    <div class="dialog-header">
+      <div class="dialog-header-left">
+        <img src="assets/avatar.png" alt="Avatar @ahumanista" />
+        <div>
+          <h2 id="dialogTitle" style="font-size: 1rem; font-weight: 700;">
+            Curadoria Humanista — @ahumanista
+          </h2>
+          <a
+            href="https://www.instagram.com/ahumanista/p/DezvMohGtiX/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style="font-size: 0.78rem; color: var(--accent-blue); text-decoration: none; font-weight: 600;"
+          >
+            Ver post original no Instagram ↗
+          </a>
+        </div>
+      </div>
+      <form method="dialog">
+        <button type="submit" class="dialog-close-btn" aria-label="Fechar janela">✕</button>
+      </form>
+    </div>
+    <div class="dialog-body">
+      <div class="recommendations-grid" id="modalGrid"></div>
+    </div>
+  </dialog>
+
+  <script>
+    const recommendations = [
+      {
+        slide: "2/10",
+        title: "Revelando: Flavinho De Papai com MC Cabelinho | Ep #08",
+        channel: "Calma Urgente • Série Revelando",
+        thumbnail: "https://i.ytimg.com/vi/ZksPKmhJu_A/hqdefault.jpg",
+        localThumb: "assets/slide-2.png",
+        comment:
+          "Vídeo necessário especialmente para a classe trabalhadora que cai no papo de os Bolsonaro vão nos salvar. O MC Cabelinho fala no papo reto como a estrutura política protege os privilégios dos \"filhos do papai\" e do sistema, enquanto o pobre continua ralando. O algoritmo flopa pra evitar a discussão. Vai lá veja por si só",
+        youtubeUrl: "https://www.youtube.com/watch?v=ZksPKmhJu_A",
+        spotifyUrl: null
+      },
+      {
+        slide: "3/10",
+        title: "a saúde pública contra a pós-verdade, com o ministro alexandre padilha",
+        channel: "lan house",
+        thumbnail: "https://i.ytimg.com/vi/AlhgCu-GFBQ/hqdefault.jpg",
+        localThumb: "assets/slide-3.png",
+        comment:
+          "Quem mete o pau no SUS não entende a dimensão dessa estrutura que lugar nenhum no mundo tem. O episódio discute como a saúde pública precisa lutar contra a desinformação e as fake news pra garantir um futuro com proteção de verdade pra todo mundo.",
+        youtubeUrl: "https://www.youtube.com/watch?v=AlhgCu-GFBQ",
+        spotifyUrl: "https://open.spotify.com/show/7BpkiMnGOnTUGeWb8xyVxC"
+      },
+      {
+        slide: "4/10",
+        title: "O paciente de extrema direita no divã | Christian Dunker | Falando nIsso",
+        channel: "Christian Dunker",
+        thumbnail: "https://i.ytimg.com/vi/_y8sAby0vlc/hqdefault.jpg",
+        localThumb: "assets/slide-4.png",
+        comment:
+          "10/10 Como psicóloga, este vídeo foi perfeito pra pensar a prática clínica. O Dunker aborda os desafios éticos e os limites do nosso manejo na clínica ao acolher pessoas atravessadas por discursos extremistas. É uma aula fundamental sobre como sustentar a escuta do sofrimento psíquico sem perder o compromisso ético e humanista com o mundo que nos rodeia.",
+        youtubeUrl: "https://www.youtube.com/watch?v=_y8sAby0vlc",
+        spotifyUrl: null
+      },
+      {
+        slide: "5/10",
+        title: "Revelando: Entrevista especial com General Santos Cruz | #Ep 6",
+        channel: "Calma Urgente",
+        thumbnail: "https://i.ytimg.com/vi/ZBGsrPONM7s/hqdefault.jpg",
+        localThumb: "assets/slide-5.png",
+        comment:
+          "Gostei muito dessa entrevista pq ouvir um ex-ministro, militar, da própria gestão Bolsonaro ser tão direto ao dizer que comportamentos radicais não têm nada a ver com ser de direita, mas sim com pura VIGARICE, foi um banho de lucidez. Espero que levem em consideração",
+        youtubeUrl: "https://www.youtube.com/watch?v=ZBGsrPONM7s",
+        spotifyUrl: null
+      },
+      {
+        slide: "6/10",
+        title: "o fim do mundo é um fetiche de bilionários / com catharina doria",
+        channel: "lan house",
+        thumbnail: "https://i.ytimg.com/vi/1uGntHoFjjs/hqdefault.jpg",
+        localThumb: "assets/slide-6.png",
+        comment:
+          "Gente! episódio 1000/10. A Catharina Doria (diva inteligentíssima sou fã) fala de como os bilionários do Vale do Silício tratam o futuro do planeta como se fosse um jogo onde nós, classe trabalhadora, somos peças descartáveis. Eles tem uma obsessão por cenários apocalípticos enquanto ditam as regras movidas pelas suas ambições e falta de limites. reflexão urgente pra parar de aceitar o \"fim do mundo\" que eles planejam e financiam.",
+        youtubeUrl: "https://www.youtube.com/watch?v=1uGntHoFjjs",
+        spotifyUrl: "https://open.spotify.com/episode/3mH0ZBPClbzLnY1Jl72bQ4"
+      },
+      {
+        slide: "7/10",
+        title: "CALMA URGENTE! - A Nação Cortisol",
+        channel: "Calma Urgente",
+        thumbnail: "https://i.ytimg.com/vi/6n2wICXNHkI/hqdefault.jpg",
+        localThumb: "assets/slide-7.png",
+        comment:
+          "Assisti e me identifiquei na hora (infelizmente!) 🤯. O vídeo analisa como esse excesso de notícias bombásticas e caóticas e absurdasss e a polarização no Brasil deixaram a gente num estado constante de estresse e ansiedade. Dá um alívio entender o que tá acontecendo na nossa cabeça.",
+        youtubeUrl: "https://www.youtube.com/watch?v=6n2wICXNHkI",
+        spotifyUrl: "https://open.spotify.com/episode/1tgFeQqtOYc0wMN8MqOmht"
+      },
+      {
+        slide: "8/10",
+        title: "QUEM PODE FALAR DE SI?",
+        channel: "TEMPERO DRAG • Rita von Hunty",
+        thumbnail: "https://i.ytimg.com/vi/wmtz4u5cl8o/hqdefault.jpg",
+        localThumb: "assets/slide-8.png",
+        comment:
+          "Amo a Rita von Hunty!! uma aula não só sobre linguagem neutra, mas sim sobre o direito fundamental de existirmos e sermos ouvidos. Me fez questionar: afinal, quem a nossa sociedade realmente deixa contar a própria história?",
+        youtubeUrl: "https://www.youtube.com/watch?v=wmtz4u5cl8o",
+        spotifyUrl: null
+      },
+      {
+        slide: "9/10",
+        title: "ICL Notícias 1ª edição - #1058 - Senado aprova fim da escala 6x1; Lula celebra conquista histórica",
+        channel: "ICL Notícias",
+        thumbnail: "https://i.ytimg.com/vi/oMlgDEhJmCc/hqdefault.jpg",
+        localThumb: "assets/slide-9.png",
+        comment:
+          "Bendito seja o fim da escala 6x1. Vídeo pra pensar sobre essa ser uma questão de saúde pública, dignidade e justiça social. O modelo de seis dias de trabalho para um de descanso esgota qualquer ser humano, gera exaustão e adoecimento mental. O próprio sistema se beneficia de manter o trabalhador cansado que este acaba por acreditar que a política e o Estado nunca fazem nada por ele. A conquista histórica prova o oposto: a luta coletiva é a única ferramenta capaz de transformar a realidade e devolver ao trabalhador o direito fundamental ao descanso.",
+        youtubeUrl: "https://www.youtube.com/watch?v=oMlgDEhJmCc",
+        spotifyUrl: null
+      }
+    ];
+
+    function renderCards(container) {
+      container.innerHTML = recommendations
+        .map(
+          (item) => `
+        <article class="rec-card">
+          <a
+            href="${item.youtubeUrl}"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="rec-thumb-wrap"
+            title="Assistir ${item.title}"
+          >
+            <img src="${item.thumbnail}" onerror="this.onerror=null;this.src='${item.localThumb}';" alt="Thumbnail: ${item.title}" loading="lazy" />
+            <span class="slide-pill">Slide ${item.slide}</span>
+            <span class="channel-pill">${item.channel}</span>
+          </a>
+          <div class="rec-body">
+            <h3 class="rec-title">${item.title}</h3>
+            <div class="giovana-comment">
+              <div class="giovana-comment-header">
+                <img src="assets/avatar.png" alt="" />
+                <span>Comentário da Giovanna (@ahumanista):</span>
+              </div>
+              <p>“${item.comment}”</p>
+            </div>
+            <div class="rec-links">
+              ${
+                item.youtubeUrl
+                  ? `<a href="${item.youtubeUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-yt">▶ Assistir no YouTube</a>`
+                  : ""
+              }
+              ${
+                item.spotifyUrl
+                  ? `<a href="${item.spotifyUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-sp">🎧 Ouvir no Spotify</a>`
+                  : ""
+              }
+            </div>
+          </div>
+        </article>
+      `
+        )
+        .join("");
+    }
+
+    renderCards(document.getElementById("inlineGrid"));
+    renderCards(document.getElementById("modalGrid"));
+
+    // Dialog logic with MANDATORY light-dismiss fallback per modern-web-guidance
+    const dialog = document.getElementById("curadoriaDialog");
+    const openModalBtn = document.getElementById("openCuradoriaModalBtn");
+    const openModalSecondaryBtn = document.getElementById("openDialogSecondaryBtn");
+
+    function openCuradoriaModal() {
+      dialog.showModal();
+    }
+
+    openModalBtn.addEventListener("click", openCuradoriaModal);
+    openModalSecondaryBtn.addEventListener("click", openCuradoriaModal);
+
+    if (!("closedBy" in HTMLDialogElement.prototype)) {
+      dialog.addEventListener("click", (event) => {
+        if (event.target !== dialog) return;
+        const rect = dialog.getBoundingClientRect();
+        const isDialogContent =
+          rect.top <= event.clientY &&
+          event.clientY <= rect.top + rect.height &&
+          rect.left <= event.clientX &&
+          event.clientX <= rect.left + rect.width;
+        if (isDialogContent) return;
+        dialog.close();
+      });
+    }
+
+    // Inline expandable container with MANDATORY accessibility sync per animate-to-intrinsic-sizes
+    const toggleInlineBtn = document.getElementById("toggleInlineBtn");
+    const inlinePanel = document.getElementById("inlineCuradoriaPanel");
+
+    toggleInlineBtn.addEventListener("click", () => {
+      const isExpanded = toggleInlineBtn.getAttribute("aria-expanded") === "true";
+      const nextState = !isExpanded;
+      toggleInlineBtn.setAttribute("aria-expanded", String(nextState));
+      if (nextState) {
+        inlinePanel.hidden = false;
+        requestAnimationFrame(() => {
+          inlinePanel.classList.add("is-expanded");
+        });
+      } else {
+        inlinePanel.classList.remove("is-expanded");
+      }
+    });
+
+    inlinePanel.addEventListener("transitionend", (e) => {
+      if (e.propertyName === "block-size" && !inlinePanel.classList.contains("is-expanded")) {
+        inlinePanel.hidden = true;
+      }
+    });
+  </script>
+</body>
+</html>
