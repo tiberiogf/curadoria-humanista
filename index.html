@@ -1016,33 +1016,6 @@
       z-index: 2;
     }
 
-    /* Toast Notification for Snippet Copy */
-    .toast-feedback {
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%) translateY(80px);
-      background: var(--text-primary);
-      color: #FFFFFF;
-      padding: 12px 24px;
-      border-radius: var(--radius-full);
-      font-size: 0.85rem;
-      font-weight: 600;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
-      z-index: 2000;
-      opacity: 0;
-      pointer-events: none;
-      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .toast-feedback.is-visible {
-      transform: translateX(-50%) translateY(0);
-      opacity: 1;
-    }
-
     .rec-body {
       padding: 20px;
       display: flex;
@@ -1869,9 +1842,6 @@
       <div class="recommendations-grid" id="modalGrid"></div>
   </dialog>
 
-  <!-- Feedback Toast for Snippet Copying -->
-  <div id="toastFeedback" class="toast-feedback" role="status" aria-live="polite"></div>
-
   <!-- Application Logic -->
   <script>
     const postsMetadata = {
@@ -2209,28 +2179,13 @@
       book: `<svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`,
       newspaper: `<svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>`,
       instagram: `<svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>`,
-      code: `<svg class="ui-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
       arrowUpRight: `<svg class="ui-icon ui-icon-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>`,
       close: `<svg class="ui-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`,
-      check: `<svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>`,
       playSmall: `<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg>`,
       searchX: `<svg class="ui-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="8" x2="14" y2="14"/><line x1="14" y1="8" x2="8" y2="14"/></svg>`,
       youtubeTab: `<svg class="ui-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><polygon points="10 15 15 12 10 9 10 15" fill="currentColor"/></svg>`,
       spotifyTab: `<svg class="ui-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 14.5c2.5-1 5.5-1 8 0"/><path d="M7 11.8c3.2-1.3 6.8-1.3 10 0"/><path d="M6 9.2c4-1.6 8-1.6 12 0"/></svg>`
     };
-
-    // Notificação Toast para feedback ao copiar snippets
-    let toastTimeout = null;
-    function showToast(message, iconSvg = ICONS.check) {
-      const toast = document.getElementById("toastFeedback");
-      if (!toast) return;
-      toast.innerHTML = `${iconSvg}<span>${message}</span>`;
-      toast.classList.add("is-visible");
-      clearTimeout(toastTimeout);
-      toastTimeout = setTimeout(() => {
-        toast.classList.remove("is-visible");
-      }, 3400);
-    }
 
     // Renderiza o card individual com thumbnail dinâmica e suporte a player incorporado
     function renderCardHTML(item) {
@@ -2375,11 +2330,6 @@
                   ? `<a href="${item.articleUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" title="Ver perfil do autor no Instagram">${ICONS.instagram}<span>Perfil do Autor</span>${ICONS.arrowUpRight}</a>`
                   : ""
               }
-              ${
-                (item.youtubeUrl || item.spotifyUrl)
-                  ? `<button type="button" class="btn btn-ghost" data-action="copy-snippet" data-item-id="${item.id}" title="Copiar snippet de código HTML (iframe) para incorporar em seu blog ou página">${ICONS.code}<span>Snippet HTML</span></button>`
-                  : ""
-              }
             </div>
           </div>
         </article>
@@ -2442,40 +2392,6 @@
         playerFrame.innerHTML = "";
         playerFrame.style.display = "none";
         mediaView.style.display = "block";
-        return;
-      }
-
-      // 5. Copiar snippet HTML para área de transferência
-      if (action === "copy-snippet") {
-        let snippet = "";
-        let label = "";
-
-        if (item.youtubeUrl && item.spotifyUrl) {
-          const ytCode = getYouTubeEmbedSnippet(item.youtubeUrl, item.title, false);
-          const spCode = getSpotifyEmbedSnippet(item.spotifyUrl, item.title);
-          snippet = `<!-- Snippet YouTube: ${item.title} -->\n${ytCode}\n\n<!-- Snippet Spotify: ${item.title} -->\n${spCode}`;
-          label = "Snippets HTML do YouTube e Spotify";
-        } else if (item.youtubeUrl) {
-          snippet = `<!-- Snippet YouTube: ${item.title} -->\n${getYouTubeEmbedSnippet(item.youtubeUrl, item.title, false)}`;
-          label = "Snippet HTML do YouTube";
-        } else if (item.spotifyUrl) {
-          snippet = `<!-- Snippet Spotify: ${item.title} -->\n${getSpotifyEmbedSnippet(item.spotifyUrl, item.title)}`;
-          label = "Snippet HTML do Spotify";
-        }
-
-        if (snippet) {
-          if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(snippet)
-              .then(() => {
-                showToast(`${label} copiado! Pronto para incorporar.`);
-              })
-              .catch(() => {
-                prompt("Copie o código do snippet HTML abaixo:", snippet);
-              });
-          } else {
-            prompt("Copie o código do snippet HTML abaixo:", snippet);
-          }
-        }
         return;
       }
     }
