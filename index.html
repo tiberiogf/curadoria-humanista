@@ -326,13 +326,13 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 16px;
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
+      padding: 7px 15px;
+      background: transparent;
+      border: 1px solid var(--border-default);
       border-radius: var(--radius-full);
       font-size: 0.82rem;
       color: var(--text-secondary);
-      box-shadow: var(--shadow-subtle);
+      box-shadow: none;
     }
 
     .stat-badge strong {
@@ -368,25 +368,26 @@
     .principles-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
+      gap: 28px;
     }
 
     .principle-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 24px;
+      background: transparent;
+      border: none;
+      border-top: 1px solid var(--border-default);
+      border-radius: 0;
+      padding: 24px 8px 12px 0;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      box-shadow: var(--shadow-card);
-      transition: transform var(--transition-smooth), border-color var(--transition-smooth), box-shadow var(--transition-smooth);
+      gap: 14px;
+      box-shadow: none;
+      transition: border-color var(--transition-smooth);
     }
 
     .principle-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-hover);
-      border-color: var(--border-default);
+      transform: none;
+      box-shadow: none;
+      border-top-color: var(--text-primary);
     }
 
     .principle-icon-wrap {
@@ -454,13 +455,14 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      box-shadow: var(--shadow-card);
-      transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+      box-shadow: var(--shadow-subtle);
+      transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-smooth);
     }
 
     .edition-card:hover {
-      transform: translateY(-3px);
+      transform: translateY(-2px);
       box-shadow: var(--shadow-hover);
+      border-color: var(--border-default);
     }
 
     .edition-cover-btn {
@@ -563,11 +565,11 @@
       font-style: italic;
       font-size: 0.94rem;
       color: var(--text-secondary);
-      line-height: 1.6;
-      background: var(--bg-surface-soft);
-      padding: 14px 18px;
-      border-radius: var(--radius-md);
-      border-left: 3px solid var(--pastel-peach-accent);
+      line-height: 1.65;
+      background: transparent;
+      padding: 0 0 0 12px;
+      border-radius: 0;
+      border-left: 2px solid var(--pastel-peach-accent);
       flex: 1;
     }
 
@@ -593,14 +595,16 @@
       flex: 1;
     }
 
-    /* Filter & Controls Panel */
+    /* Filter & Controls Panel - Seamless Minimalist Toolbar */
     .controls-panel {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 20px 24px;
-      margin-bottom: 32px;
-      box-shadow: var(--shadow-card);
+      background: transparent;
+      border: none;
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      border-radius: 0;
+      padding: 22px 0;
+      margin-bottom: 36px;
+      box-shadow: none;
       display: flex;
       flex-direction: column;
       gap: 16px;
@@ -646,7 +650,7 @@
       padding: 9px 14px 9px 36px;
       border-radius: var(--radius-full);
       border: 1px solid var(--border-default);
-      background: var(--bg-surface-soft);
+      background: var(--bg-surface);
       font-family: inherit;
       font-size: 0.85rem;
       color: var(--text-primary);
@@ -662,12 +666,40 @@
 
     .search-icon {
       position: absolute;
-      left: 12px;
+      left: 14px;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 0.9rem;
+      width: 16px;
+      height: 16px;
       color: var(--text-muted);
       pointer-events: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Common Lucide SVG Icon Helpers */
+    .ui-icon {
+      display: inline-block;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+
+    .ui-icon-arrow {
+      transition: transform var(--transition-smooth);
+    }
+
+    .btn:hover .ui-icon-arrow,
+    .media-tab-btn:hover .ui-icon-arrow,
+    .giovanna-note-link:hover .ui-icon-arrow,
+    .footer-links a:hover .ui-icon-arrow {
+      transform: translate(1.5px, -1.5px);
+    }
+
+    .inline-flex-center {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
     /* Filter Pills */
@@ -698,6 +730,9 @@
     }
 
     .filter-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       padding: 6px 14px;
       border-radius: var(--radius-full);
       font-size: 0.8rem;
@@ -737,23 +772,33 @@
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      box-shadow: var(--shadow-card);
+      box-shadow: var(--shadow-subtle);
       transition: transform var(--transition-smooth), box-shadow var(--transition-smooth), border-color var(--transition-smooth);
     }
 
     .rec-card:hover {
-      transform: translateY(-3px);
+      transform: translateY(-2px);
       box-shadow: var(--shadow-hover);
       border-color: var(--border-default);
     }
 
+    /* Thumbnail Container & Media Players */
     .rec-thumb-container {
       position: relative;
       aspect-ratio: 16 / 10;
       background: var(--bg-surface-soft);
       overflow: hidden;
       display: block;
-      text-decoration: none;
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .rec-media-view {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
     }
 
     .rec-thumb-container img {
@@ -781,6 +826,148 @@
       max-height: 90%;
     }
 
+    /* YouTube Play Overlay Facade */
+    .rec-play-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(30, 24, 20, 0.22);
+      border: none;
+      cursor: pointer;
+      opacity: 0;
+      transition: opacity 0.25s ease, background 0.25s ease;
+      z-index: 3;
+    }
+
+    .rec-thumb-container:hover .rec-play-overlay,
+    .rec-play-overlay:focus-visible {
+      opacity: 1;
+      background: rgba(30, 24, 20, 0.38);
+    }
+
+    .rec-play-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      border-radius: var(--radius-full);
+      color: var(--text-primary);
+      font-size: 0.8rem;
+      font-weight: 700;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+      transform: scale(0.96);
+      transition: transform 0.2s ease, background 0.2s ease;
+      pointer-events: none;
+    }
+
+    .rec-thumb-container:hover .rec-play-badge {
+      transform: scale(1.04);
+      background: #FFFFFF;
+    }
+
+    .rec-play-badge .play-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--pastel-peach-accent);
+      color: #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.68rem;
+      padding-left: 2px;
+    }
+
+    /* Embedded HTML Player Frame (YouTube & Spotify) */
+    .rec-player-frame {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      background: #000000;
+      z-index: 6;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .rec-player-frame iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+      flex: 1;
+    }
+
+    .rec-player-close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 10;
+      background: rgba(30, 26, 23, 0.92);
+      backdrop-filter: blur(8px);
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: var(--radius-full);
+      padding: 5px 12px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+      transition: all 0.2s ease;
+    }
+
+    .rec-player-close-btn:hover {
+      background: #110F0E;
+      transform: scale(1.05);
+      border-color: rgba(255, 255, 255, 0.6);
+    }
+
+    /* Media Switcher Tabs for YouTube + Spotify items */
+    .rec-media-tabs {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      display: inline-flex;
+      gap: 5px;
+      z-index: 4;
+    }
+
+    .media-tab-btn {
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: var(--radius-full);
+      padding: 3px 9px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .media-tab-btn:hover {
+      background: #FFFFFF;
+      transform: translateY(-1px);
+    }
+
+    .media-tab-btn.is-active {
+      background: var(--text-primary);
+      color: #FFFFFF;
+      border-color: var(--text-primary);
+    }
+
     .rec-pill-top-left {
       position: absolute;
       top: 10px;
@@ -793,6 +980,7 @@
       padding: 3px 10px;
       border-radius: var(--radius-full);
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+      z-index: 2;
     }
 
     .rec-pill-top-right {
@@ -806,6 +994,7 @@
       font-weight: 600;
       padding: 3px 10px;
       border-radius: var(--radius-full);
+      z-index: 2;
     }
 
     .rec-pill-bottom-left {
@@ -819,11 +1008,39 @@
       font-weight: 600;
       padding: 4px 10px;
       border-radius: 6px;
-      max-width: calc(100% - 20px);
+      max-width: calc(100% - 170px);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+      z-index: 2;
+    }
+
+    /* Toast Notification for Snippet Copy */
+    .toast-feedback {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--text-primary);
+      color: #FFFFFF;
+      padding: 12px 24px;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+      z-index: 2000;
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toast-feedback.is-visible {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
     }
 
     .rec-body {
@@ -842,15 +1059,15 @@
       color: var(--text-primary);
     }
 
-    /* Giovanna's Personal Humanist Note */
+    /* Giovanna's Personal Humanist Note - Minimalist Editorial Reflection */
     .giovanna-note {
-      background: var(--pastel-peach-bg);
-      border-radius: var(--radius-md);
-      padding: 14px 16px;
+      background: transparent;
+      border: none;
+      border-radius: 0;
+      padding: 2px 0 0;
       display: flex;
       flex-direction: column;
       gap: 8px;
-      border-left: 3px solid var(--pastel-peach-accent);
       flex: 1;
     }
 
@@ -862,27 +1079,53 @@
     }
 
     .giovanna-author-badge {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 7px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--pastel-peach-text);
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
     }
 
     .giovanna-author-badge img {
-      width: 22px;
-      height: 22px;
+      width: 20px;
+      height: 20px;
       border-radius: var(--radius-full);
       object-fit: cover;
+      box-shadow: 0 0 0 1px var(--border-default);
+    }
+
+    .giovanna-note-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.74rem;
+      color: var(--pastel-peach-accent);
+      text-decoration: none;
+      font-weight: 600;
+      transition: color var(--transition-smooth);
+    }
+
+    .giovanna-note-link:hover {
+      color: var(--pastel-peach-text);
+      text-decoration: underline;
     }
 
     .giovanna-note-text {
       font-family: "Lora", Georgia, serif;
       font-style: italic;
-      font-size: 0.9rem;
-      line-height: 1.6;
+      font-size: 0.91rem;
+      line-height: 1.65;
       color: var(--text-secondary);
+      border-left: 2px solid var(--border-default);
+      padding-left: 12px;
+      margin: 2px 0 0 2px;
+      transition: border-color var(--transition-smooth);
+    }
+
+    .rec-card:hover .giovanna-note-text {
+      border-left-color: var(--pastel-peach-accent);
     }
 
     .rec-actions {
@@ -1020,6 +1263,9 @@
     }
 
     .footer-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       color: var(--text-secondary);
       text-decoration: none;
       font-weight: 600;
@@ -1135,8 +1381,11 @@
     }
 
     .empty-state-icon {
-      font-size: 2rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       color: var(--text-muted);
+      margin-bottom: 4px;
     }
 
     .empty-state-title {
@@ -1189,7 +1438,7 @@
       }
 
       .controls-panel {
-        padding: 16px;
+        padding: 18px 0;
       }
 
       .search-box-wrap {
@@ -1241,8 +1490,9 @@
           class="btn btn-pastel-sage"
           title="Conheça a clínica de psicoterapia de Giovanna Biondi"
         >
-          <span>🌱 Conhecer a Clínica</span>
-          <span aria-hidden="true">↗</span>
+          <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/></svg>
+          <span>Conhecer a Clínica</span>
+          <svg class="ui-icon ui-icon-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
         </a>
 
         <a
@@ -1252,8 +1502,9 @@
           class="btn btn-ghost"
           title="Acompanhe @ahumanista no Instagram"
         >
+          <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
           <span>@ahumanista</span>
-          <span aria-hidden="true">↗</span>
+          <svg class="ui-icon ui-icon-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
         </a>
       </div>
     </div>
@@ -1264,77 +1515,18 @@
     <!-- Hero / Manifesto Section -->
     <section class="editorial-hero" aria-label="Apresentação da Curadoria">
       <div class="hero-badge-pill">
-        <span aria-hidden="true">✦</span>
+        <svg class="ui-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3-1.9 5.8a2 2 0 0 1-1.3 1.3L3 12l5.8 1.9a2 2 0 0 1 1.3 1.3L12 21l1.9-5.8a2 2 0 0 1 1.3-1.3L21 12l-5.8-1.9a2 2 0 0 1-1.3-1.3Z"/></svg>
         <span>Curadoria Anti-Alienação • Edições Semanais</span>
       </div>
 
       <h1 class="hero-quote">
-        “O que você deve ser, <em>está se tornando agora</em>.”
+        “O que você deve ser, <br><em>está se tornando agora</em>.”
       </h1>
       <span class="hero-quote-author">Carl Rogers • Psicologia Humanista</span>
 
       <p class="hero-manifesto">
         Em um mundo ruidoso e moldado por algoritmos de aceleração, a psicoterapia e a arte nos convidam à desaceleração, à escuta atenta e ao pensamento crítico. Esta curadoria reúne podcasts, vídeos, debates e livros para resistir à alienação cotidiana e cultivar uma vida com maior sensibilidade, conexão e saúde mental.
       </p>
-
-      <div class="hero-stats-row">
-        <span class="stat-badge">
-          <strong>14</strong> recomendações analisadas
-        </span>
-        <span class="stat-badge">
-          <strong>2</strong> edições publicadas
-        </span>
-        <span class="stat-badge">
-          🎧 Spotify &bull; 🎬 YouTube &bull; 📖 Livros
-        </span>
-        <span class="stat-badge">
-          🌿 Abordagem Centrada na Pessoa
-        </span>
-      </div>
-    </section>
-
-    <!-- Humanist Values & Principles -->
-    <section class="principles-section" aria-label="Valores e Princípios de Trabalho">
-      <p class="section-eyebrow">Fundamentos da Abordagem</p>
-      <h2 class="section-heading">Sensibilidade, Escuta &amp; Pensamento Crítico</h2>
-
-      <div class="principles-grid">
-        <!-- 1. Escuta & Empatia -->
-        <article class="principle-card peach">
-          <div class="principle-icon-wrap" aria-hidden="true">🌱</div>
-          <h3 class="principle-title">Escuta &amp; Empatia</h3>
-          <p class="principle-desc">
-            Não há escuta sem empatia. Calçar os sapatos do outro e acolher a singularidade de cada história em um espaço seguro e livre de julgamentos.
-          </p>
-        </article>
-
-        <!-- 2. Arte & Subjetividade -->
-        <article class="principle-card sage">
-          <div class="principle-icon-wrap" aria-hidden="true">🎭</div>
-          <h3 class="principle-title">Da Arte ao Cuidado</h3>
-          <p class="principle-desc">
-            Com formação prévia em Teatro, a arte surge como caminho para despertar emoções represadas, enxergar nuances e tocar a subjetividade.
-          </p>
-        </article>
-
-        <!-- 3. Relação Corpo-Mente -->
-        <article class="principle-card lavender">
-          <div class="principle-icon-wrap" aria-hidden="true">🧘‍♀️</div>
-          <h3 class="principle-title">Corpo, Mente &amp; Alma</h3>
-          <p class="principle-desc">
-            O descanso, a regulação emocional e a superação de rotinas extenuantes (como a luta pelo fim da escala 6x1) são pilares de dignidade e saúde mental.
-          </p>
-        </article>
-
-        <!-- 4. Anti-Alienação -->
-        <article class="principle-card honey">
-          <div class="principle-icon-wrap" aria-hidden="true">💡</div>
-          <h3 class="principle-title">Alimento da Mente</h3>
-          <p class="principle-desc">
-            Resistir à passividade do scroll infinito. Trocar referências para expandir a consciência cívica, o debate democrático e a pedagogia libertadora.
-          </p>
-        </article>
-      </div>
     </section>
 
     <!-- Editions Showcase -->
@@ -1362,13 +1554,16 @@
               <span class="edition-tag-pill">22 de Outubro &bull; 8 recomendações</span>
               <div class="edition-cover-bottom">
                 <span class="edition-cover-title">Curadoria Anti-Alienação</span>
-                <span class="edition-expand-hint">Explorar 8 itens ↗</span>
+                <span class="edition-expand-hint">Explorar 8 itens <svg class="ui-icon ui-icon-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span>
               </div>
             </div>
           </button>
           <div class="edition-content">
             <div class="edition-meta-row">
-              <span>🎵 Elza Soares &bull; BaianaSystem</span>
+              <span class="inline-flex-center">
+                <svg class="ui-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                Elza Soares &bull; BaianaSystem
+              </span>
               <span>Slide 1 a 9</span>
             </div>
             <div class="edition-caption-quote">
@@ -1381,7 +1576,8 @@
                 class="btn btn-pastel-peach"
                 data-open-edition="DezvMohGtiX"
               >
-                📂 Ver 8 Recomendações
+                <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>
+                <span>Ver 8 Recomendações</span>
               </button>
               <a
                 href="https://www.instagram.com/ahumanista/p/DezvMohGtiX/"
@@ -1389,7 +1585,9 @@
                 rel="noopener noreferrer"
                 class="btn btn-ghost"
               >
-                Post no Instagram ↗
+                <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                <span>Post no Instagram</span>
+                <svg class="ui-icon ui-icon-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
               </a>
             </div>
           </div>
@@ -1413,13 +1611,16 @@
               <span class="edition-tag-pill">09 de Outubro &bull; 6 recomendações</span>
               <div class="edition-cover-bottom">
                 <span class="edition-cover-title">Tudo que Consumi na Semana</span>
-                <span class="edition-expand-hint">Explorar 6 itens ↗</span>
+                <span class="edition-expand-hint">Explorar 6 itens <svg class="ui-icon ui-icon-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></span>
               </div>
             </div>
           </button>
           <div class="edition-content">
             <div class="edition-meta-row">
-              <span>📚 Livros, Podcasts &bull; Democracia</span>
+              <span class="inline-flex-center">
+                <svg class="ui-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16 6 4 14"/><path d="M12 6v14"/><path d="M8 8v12"/><path d="M4 4v16"/></svg>
+                Livros, Podcasts &bull; Democracia
+              </span>
               <span>Slide 1 a 7</span>
             </div>
             <div class="edition-caption-quote">
@@ -1432,7 +1633,8 @@
                 class="btn btn-pastel-sage"
                 data-open-edition="DeUP8oSjsR4"
               >
-                📂 Ver 6 Recomendações
+                <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>
+                <span>Ver 6 Recomendações</span>
               </button>
               <a
                 href="https://www.instagram.com/ahumanista/p/DeUP8oSjsR4/"
@@ -1440,7 +1642,9 @@
                 rel="noopener noreferrer"
                 class="btn btn-ghost"
               >
-                Post no Instagram ↗
+                <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                <span>Post no Instagram</span>
+                <svg class="ui-icon ui-icon-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
               </a>
             </div>
           </div>
@@ -1457,7 +1661,7 @@
         </div>
 
         <div class="search-box-wrap">
-          <span class="search-icon" aria-hidden="true">🔍</span>
+          <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
           <input
             type="search"
             id="searchInput"
@@ -1481,9 +1685,18 @@
         <div class="filter-pills-row" role="group" aria-label="Filtrar por Formato">
           <span class="filter-label">Formato:</span>
           <button type="button" class="filter-btn is-active" data-format-filter="all">Todos</button>
-          <button type="button" class="filter-btn" data-format-filter="youtube">🎬 Vídeos</button>
-          <button type="button" class="filter-btn" data-format-filter="spotify">🎧 Podcasts</button>
-          <button type="button" class="filter-btn" data-format-filter="book">📖 Livros</button>
+          <button type="button" class="filter-btn" data-format-filter="youtube">
+            <svg class="ui-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><polygon points="10 15 15 12 10 9 10 15" fill="currentColor"/></svg>
+            <span>Vídeos</span>
+          </button>
+          <button type="button" class="filter-btn" data-format-filter="spotify">
+            <svg class="ui-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 14.5c2.5-1 5.5-1 8 0"/><path d="M7 11.8c3.2-1.3 6.8-1.3 10 0"/><path d="M6 9.2c4-1.6 8-1.6 12 0"/></svg>
+            <span>Podcasts</span>
+          </button>
+          <button type="button" class="filter-btn" data-format-filter="book">
+            <svg class="ui-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            <span>Livros</span>
+          </button>
         </div>
       </div>
     </section>
@@ -1509,7 +1722,8 @@
 
       <div class="curator-bio-text">
         <div class="curator-quote-pill">
-          <span>🌿 Psicoterapia Humanista &bull; Atendimento Online</span>
+          <svg class="ui-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+          <span>Psicoterapia Humanista &bull; Atendimento Online</span>
         </div>
         <h2 class="curator-bio-title">
           Prazer, Giovanna. Mas pode me chamar de a Humanista.
@@ -1529,8 +1743,9 @@
             rel="noopener noreferrer"
             class="btn btn-pastel-sage"
           >
+            <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
             <span>Conheça a Humanista (Site Oficial)</span>
-            <span aria-hidden="true">↗</span>
+            <svg class="ui-icon ui-icon-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
           </a>
           <a
             href="https://www.instagram.com/ahumanista/"
@@ -1538,10 +1753,63 @@
             rel="noopener noreferrer"
             class="btn btn-pastel-peach"
           >
+            <svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
             <span>Instagram @ahumanista</span>
-            <span aria-hidden="true">↗</span>
+            <svg class="ui-icon ui-icon-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
           </a>
         </div>
+      </div>
+    </section>
+
+    <!-- Humanist Values & Principles -->
+    <section class="principles-section" aria-label="Valores e Princípios de Trabalho">
+      <p class="section-eyebrow">Fundamentos da Abordagem</p>
+      <h2 class="section-heading">Sensibilidade, Escuta &amp; Pensamento Crítico</h2>
+
+      <div class="principles-grid">
+        <!-- 1. Escuta & Empatia -->
+        <article class="principle-card peach">
+          <div class="principle-icon-wrap" aria-hidden="true">
+            <svg class="ui-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08c.86.86 2.22.86 3.08 0L14 9"/><path d="m13 13 2 2"/><path d="m17 11 2 2"/></svg>
+          </div>
+          <h3 class="principle-title">Escuta &amp; Empatia</h3>
+          <p class="principle-desc">
+            Não há escuta sem empatia. Calçar os sapatos do outro e acolher a singularidade de cada história em um espaço seguro e livre de julgamentos.
+          </p>
+        </article>
+
+        <!-- 2. Arte & Subjetividade -->
+        <article class="principle-card sage">
+          <div class="principle-icon-wrap" aria-hidden="true">
+            <svg class="ui-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13.5" cy="6.5" r=".5" fill="currentColor"/><circle cx="17.5" cy="10.5" r=".5" fill="currentColor"/><circle cx="8.5" cy="7.5" r=".5" fill="currentColor"/><circle cx="6.5" cy="12.5" r=".5" fill="currentColor"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg>
+          </div>
+          <h3 class="principle-title">Da Arte ao Cuidado</h3>
+          <p class="principle-desc">
+            Com formação prévia em Teatro, a arte surge como caminho para despertar emoções represadas, enxergar nuances e tocar a subjetividade.
+          </p>
+        </article>
+
+        <!-- 3. Relação Corpo-Mente -->
+        <article class="principle-card lavender">
+          <div class="principle-icon-wrap" aria-hidden="true">
+            <svg class="ui-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5a3 3 0 1 1 3 3m-3-3a3 3 0 1 0-3 3m3-3v14m-3-4a3 3 0 1 0 6 0m-6 0a3 3 0 1 1 6 0m-6 0H6m12 0h-6"/></svg>
+          </div>
+          <h3 class="principle-title">Corpo, Mente &amp; Alma</h3>
+          <p class="principle-desc">
+            O descanso, a regulação emocional e a superação de rotinas extenuantes (como a luta pelo fim da escala 6x1) são pilares de dignidade e saúde mental.
+          </p>
+        </article>
+
+        <!-- 4. Anti-Alienação -->
+        <article class="principle-card honey">
+          <div class="principle-icon-wrap" aria-hidden="true">
+            <svg class="ui-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+          </div>
+          <h3 class="principle-title">Alimento da Mente</h3>
+          <p class="principle-desc">
+            Resistir à passividade do scroll infinito. Trocar referências para expandir a consciência cívica, o debate democrático e a pedagogia libertadora.
+          </p>
+        </article>
       </div>
     </section>
 
@@ -1554,9 +1822,26 @@
         Curadoria Anti-Alienação &bull; Criada com carinho e inspirada nos princípios humanistas de Giovanna Biondi.
       </p>
       <ul class="footer-links">
-        <li><a href="https://www.ahumanista.com/" target="_blank" rel="noopener noreferrer">ahumanista.com</a></li>
-        <li><a href="https://www.instagram.com/ahumanista/" target="_blank" rel="noopener noreferrer">@ahumanista no Instagram</a></li>
-        <li><a href="#inicio">Voltar ao topo ↑</a></li>
+        <li>
+          <a href="https://www.ahumanista.com/" target="_blank" rel="noopener noreferrer">
+            <svg class="ui-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+            <span>ahumanista.com</span>
+            <svg class="ui-icon ui-icon-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </a>
+        </li>
+        <li>
+          <a href="https://www.instagram.com/ahumanista/" target="_blank" rel="noopener noreferrer">
+            <svg class="ui-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            <span>@ahumanista no Instagram</span>
+            <svg class="ui-icon ui-icon-arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </a>
+        </li>
+        <li>
+          <a href="#inicio">
+            <span>Voltar ao topo</span>
+            <svg class="ui-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"></line><polyline points="5 12 12 5 19 12"></polyline></svg>
+          </a>
+        </li>
       </ul>
       <p style="font-size: 0.78rem; color: var(--text-faint);">
         “Não há escuta sem empatia.” &bull; Carl Gustav Jung &bull; Carl Rogers &bull; Paulo Freire
@@ -1575,13 +1860,17 @@
         </div>
       </div>
       <form method="dialog">
-        <button type="submit" class="dialog-close-btn" aria-label="Fechar janela">✕</button>
+        <button type="submit" class="dialog-close-btn" aria-label="Fechar janela">
+          <svg class="ui-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
       </form>
     </div>
     <div class="dialog-body">
       <div class="recommendations-grid" id="modalGrid"></div>
-    </div>
   </dialog>
+
+  <!-- Feedback Toast for Snippet Copying -->
+  <div id="toastFeedback" class="toast-feedback" role="status" aria-live="polite"></div>
 
   <!-- Application Logic -->
   <script>
@@ -1609,7 +1898,7 @@
         category: "Sociedade & Política",
         title: "Revelando: Flavinho De Papai com MC Cabelinho | Ep #08",
         channel: "Calma Urgente • Série Revelando",
-        thumbnail: "https://i.ytimg.com/vi/ZksPKmhJu_A/hqdefault.jpg",
+        thumbnail: "https://i.ytimg.com/vi/rI1C7pJx-fg/hqdefault.jpg",
         localThumb: "assets/slide-2.png",
         isBook: false,
         comment:
@@ -1698,7 +1987,7 @@
         localThumb: "assets/slide-7.png",
         isBook: false,
         comment:
-          "Assisti e me identifiquei na hora (infelizmente!) 🤯. O vídeo analisa como esse excesso de notícias bombásticas e caóticas e absurdasss e a polarização no Brasil deixaram a gente num estado constante de estresse e ansiedade. Dá um alívio entender o que tá acontecendo na nossa cabeça.",
+          "Assisti e me identifiquei na hora (infelizmente!). O vídeo analisa como esse excesso de notícias bombásticas e caóticas e absurdasss e a polarização no Brasil deixaram a gente num estado constante de estresse e ansiedade. Dá um alívio entender o que tá acontecendo na nossa cabeça.",
         youtubeUrl: "https://www.youtube.com/watch?v=6n2wICXNHkI",
         spotifyUrl: "https://open.spotify.com/episode/1tgFeQqtOYc0wMN8MqOmht",
         bookUrl: null,
@@ -1849,29 +2138,192 @@
     let currentFormatFilter = "all";
     let currentSearchTerm = "";
 
+    // === Helpers para Extração e Incorporação (YouTube & Spotify) ===
+
+    function escapeHtml(str) {
+      if (!str) return "";
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    // Extrai o ID do vídeo do YouTube a partir de qualquer formato de URL
+    function extractYouTubeId(url) {
+      if (!url || typeof url !== "string") return null;
+      const match = url.match(
+        /(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|v\/|live\/))([a-zA-Z0-9_-]{11})/
+      );
+      return match ? match[1] : null;
+    }
+
+    // Puxa a thumbnail oficial de alta qualidade diretamente do YouTube CDN
+    function getYouTubeThumbnail(url) {
+      const id = extractYouTubeId(url);
+      if (!id) return null;
+      return `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+    }
+
+    // Extrai o tipo e identificador do Spotify
+    function extractSpotifyData(url) {
+      if (!url || typeof url !== "string") return null;
+      const match = url.match(/open\.spotify\.com\/(episode|show|track|album|playlist)\/([a-zA-Z0-9]+)/);
+      if (!match) return null;
+      return {
+        type: match[1],
+        id: match[2],
+        embedUrl: `https://open.spotify.com/embed/${match[1]}/${match[2]}?utm_source=generator&theme=0`
+      };
+    }
+
+    // Gera o snippet de código HTML (iframe) oficial do YouTube
+    function getYouTubeEmbedSnippet(url, title = "Vídeo do YouTube", autoplay = true) {
+      const id = extractYouTubeId(url);
+      if (!id) return "";
+      const autoParam = autoplay ? "?autoplay=1" : "";
+      return `<iframe src="https://www.youtube-nocookie.com/embed/${id}${autoParam}" title="${escapeHtml(title)}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>`;
+    }
+
+    // Gera o snippet de código HTML (iframe) oficial do Spotify
+    function getSpotifyEmbedSnippet(url, title = "Podcast no Spotify") {
+      const data = extractSpotifyData(url);
+      if (!data) return "";
+      return `<iframe src="${data.embedUrl}" width="100%" height="100%" frameborder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy" title="${escapeHtml(title)}"></iframe>`;
+    }
+
+    // Puxa dinamicamente a thumbnail direto do YouTube quando disponível, com fallback local
+    function resolveThumbnail(item) {
+      if (item.youtubeUrl) {
+        const ytThumb = getYouTubeThumbnail(item.youtubeUrl);
+        if (ytThumb) return ytThumb;
+      }
+      return item.thumbnail || item.localThumb;
+    }
+
+    // Coleção de Ícones SVG no estilo Lucide Icons (viewBox 24x24, stroke 2px, cantos arredondados)
+    const ICONS = {
+      youtube: `<svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><polygon points="10 15 15 12 10 9 10 15" fill="currentColor"/></svg>`,
+      spotify: `<svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 14.5c2.5-1 5.5-1 8 0"/><path d="M7 11.8c3.2-1.3 6.8-1.3 10 0"/><path d="M6 9.2c4-1.6 8-1.6 12 0"/></svg>`,
+      book: `<svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`,
+      newspaper: `<svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>`,
+      instagram: `<svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>`,
+      code: `<svg class="ui-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>`,
+      arrowUpRight: `<svg class="ui-icon ui-icon-arrow" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>`,
+      close: `<svg class="ui-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`,
+      check: `<svg class="ui-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>`,
+      playSmall: `<svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"/></svg>`,
+      searchX: `<svg class="ui-icon" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="8" x2="14" y2="14"/><line x1="14" y1="8" x2="8" y2="14"/></svg>`,
+      youtubeTab: `<svg class="ui-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><polygon points="10 15 15 12 10 9 10 15" fill="currentColor"/></svg>`,
+      spotifyTab: `<svg class="ui-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 14.5c2.5-1 5.5-1 8 0"/><path d="M7 11.8c3.2-1.3 6.8-1.3 10 0"/><path d="M6 9.2c4-1.6 8-1.6 12 0"/></svg>`
+    };
+
+    // Notificação Toast para feedback ao copiar snippets
+    let toastTimeout = null;
+    function showToast(message, iconSvg = ICONS.check) {
+      const toast = document.getElementById("toastFeedback");
+      if (!toast) return;
+      toast.innerHTML = `${iconSvg}<span>${message}</span>`;
+      toast.classList.add("is-visible");
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove("is-visible");
+      }, 3400);
+    }
+
+    // Renderiza o card individual com thumbnail dinâmica e suporte a player incorporado
     function renderCardHTML(item) {
       const postMeta = postsMetadata[item.postId];
       const primaryHref = item.youtubeUrl || item.spotifyUrl || item.bookUrl || item.articleUrl || postMeta.url;
+      const thumbnailUrl = resolveThumbnail(item);
+      const hasBoth = Boolean(item.youtubeUrl && item.spotifyUrl);
 
       return `
-        <article class="rec-card" data-post-id="${item.postId}">
-          <a
-            href="${primaryHref}"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="rec-thumb-container ${item.isBook ? "is-book" : ""}"
-            title="${item.title}"
-          >
-            <img
-              src="${item.thumbnail}"
-              onerror="this.onerror=null;this.src='${item.localThumb}';"
-              alt="Capa de ${item.title}"
-              loading="lazy"
-            />
-            <span class="rec-pill-top-left">${postMeta.badgeLabel} &bull; Slide ${item.slide}</span>
-            <span class="rec-pill-top-right">${item.category}</span>
-            <span class="rec-pill-bottom-left">${item.channel}</span>
-          </a>
+        <article class="rec-card" data-card-id="${item.id}" data-post-id="${item.postId}">
+          <div class="rec-thumb-container ${item.isBook ? "is-book" : ""}">
+            <!-- Media View: Capa com thumbnail do YouTube e botões de reprodução -->
+            <div class="rec-media-view">
+              <img
+                src="${thumbnailUrl}"
+                onerror="this.onerror=null;this.src='${item.localThumb}';"
+                alt="Capa de ${escapeHtml(item.title)}"
+                loading="lazy"
+              />
+
+              ${
+                item.youtubeUrl
+                  ? `
+                  <button
+                    type="button"
+                    class="rec-play-overlay"
+                    data-action="play-youtube"
+                    data-item-id="${item.id}"
+                    aria-label="Assistir ao vídeo incorporado no site"
+                    title="Assistir vídeo incorporado aqui"
+                  >
+                    <span class="rec-play-badge">
+                      <span class="play-icon">${ICONS.playSmall}</span>
+                      <span>Assistir aqui</span>
+                    </span>
+                  </button>
+                  `
+                  : ""
+              }
+
+              <span class="rec-pill-top-left">${postMeta.badgeLabel} &bull; Slide ${item.slide}</span>
+              <span class="rec-pill-top-right">${item.category}</span>
+              <span class="rec-pill-bottom-left" title="${escapeHtml(item.channel)}">${item.channel}</span>
+
+              ${
+                hasBoth
+                  ? `
+                  <div class="rec-media-tabs" role="tablist" aria-label="Alternar formato de mídia">
+                    <button
+                      type="button"
+                      class="media-tab-btn is-active"
+                      data-switch="youtube"
+                      data-item-id="${item.id}"
+                      title="Ver capa / vídeo do YouTube"
+                      aria-label="Ver vídeo do YouTube"
+                    >
+                      ${ICONS.youtubeTab}
+                      <span>Vídeo</span>
+                    </button>
+                    <button
+                      type="button"
+                      class="media-tab-btn"
+                      data-switch="spotify"
+                      data-item-id="${item.id}"
+                      title="Abrir player incorporado do Spotify"
+                      aria-label="Abrir player do Spotify"
+                    >
+                      ${ICONS.spotifyTab}
+                      <span>Spotify</span>
+                    </button>
+                  </div>
+                  `
+                  : (item.spotifyUrl ? `
+                  <div class="rec-media-tabs">
+                    <button
+                      type="button"
+                      class="media-tab-btn"
+                      data-switch="spotify"
+                      data-item-id="${item.id}"
+                      title="Abrir player incorporado do Spotify"
+                      aria-label="Abrir player do Spotify"
+                    >
+                      ${ICONS.spotifyTab}
+                      <span>Player Spotify</span>
+                    </button>
+                  </div>
+                  ` : "")
+              }
+            </div>
+
+            <!-- Player Frame: Snippet HTML de incorporação (injetado sob demanda) -->
+            <div class="rec-player-frame" style="display: none;"></div>
+          </div>
 
           <div class="rec-body">
             <h3 class="rec-title">${item.title}</h3>
@@ -1880,16 +2332,18 @@
               <div class="giovanna-note-header">
                 <span class="giovanna-author-badge">
                   <img src="assets/avatar.png" alt="" />
-                  <span>Reflexão da Giovanna:</span>
+                  <span>Reflexão da Giovanna</span>
                 </span>
                 <a
                   href="${postMeta.url}"
                   target="_blank"
                   rel="noopener noreferrer"
-                  style="font-size: 0.74rem; color: var(--pastel-peach-text); text-decoration: none; font-weight: 600;"
+                  class="giovanna-note-link"
                   title="Ver no Instagram"
                 >
-                  Post original ↗
+                  ${ICONS.instagram}
+                  <span>Post original</span>
+                  ${ICONS.arrowUpRight}
                 </a>
               </div>
               <p class="giovanna-note-text">“${item.comment}”</p>
@@ -1898,27 +2352,32 @@
             <div class="rec-actions">
               ${
                 item.youtubeUrl
-                  ? `<a href="${item.youtubeUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-pastel-peach">🎬 Assistir no YouTube</a>`
+                  ? `<a href="${item.youtubeUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-pastel-peach" title="Abrir no site do YouTube em nova aba">${ICONS.youtube}<span>YouTube</span>${ICONS.arrowUpRight}</a>`
                   : ""
               }
               ${
                 item.spotifyUrl
-                  ? `<a href="${item.spotifyUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-pastel-sage">🎧 Ouvir no Spotify</a>`
+                  ? `<a href="${item.spotifyUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-pastel-sage" title="Abrir no site do Spotify em nova aba">${ICONS.spotify}<span>Spotify</span>${ICONS.arrowUpRight}</a>`
                   : ""
               }
               ${
                 item.bookUrl
-                  ? `<a href="${item.bookUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-pastel-honey">📖 Ver Livro</a>`
+                  ? `<a href="${item.bookUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-pastel-honey" title="Ver livro na Amazon">${ICONS.book}<span>Ver Livro</span>${ICONS.arrowUpRight}</a>`
                   : ""
               }
               ${
                 item.articleUrl && !item.isBook
-                  ? `<a href="${item.articleUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-pastel-lavender">📰 Ouvir no g1</a>`
+                  ? `<a href="${item.articleUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-pastel-lavender" title="Ouvir matéria no g1">${ICONS.newspaper}<span>Ouvir no g1</span>${ICONS.arrowUpRight}</a>`
                   : ""
               }
               ${
                 item.articleUrl && item.isBook
-                  ? `<a href="${item.articleUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">👤 Perfil do Autor</a>`
+                  ? `<a href="${item.articleUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-ghost" title="Ver perfil do autor no Instagram">${ICONS.instagram}<span>Perfil do Autor</span>${ICONS.arrowUpRight}</a>`
+                  : ""
+              }
+              ${
+                (item.youtubeUrl || item.spotifyUrl)
+                  ? `<button type="button" class="btn btn-ghost" data-action="copy-snippet" data-item-id="${item.id}" title="Copiar snippet de código HTML (iframe) para incorporar em seu blog ou página">${ICONS.code}<span>Snippet HTML</span></button>`
                   : ""
               }
             </div>
@@ -1926,6 +2385,104 @@
         </article>
       `;
     }
+
+    // Gerenciador de eventos para os cards (delegação limpa)
+    function handleCardInteraction(e) {
+      const btn = e.target.closest("button");
+      if (!btn) return;
+
+      const card = btn.closest(".rec-card");
+      if (!card) return;
+
+      const itemId = btn.getAttribute("data-item-id");
+      const item = recommendations.find((r) => r.id === itemId);
+      if (!item) return;
+
+      const mediaView = card.querySelector(".rec-media-view");
+      const playerFrame = card.querySelector(".rec-player-frame");
+      const action = btn.getAttribute("data-action");
+      const switchMode = btn.getAttribute("data-switch");
+
+      // 1. Assistir vídeo do YouTube incorporado no próprio card
+      if (action === "play-youtube") {
+        if (!item.youtubeUrl || !playerFrame || !mediaView) return;
+        playerFrame.innerHTML = `
+          ${getYouTubeEmbedSnippet(item.youtubeUrl, item.title, true)}
+          <button type="button" class="rec-player-close-btn" data-action="close-player" data-item-id="${item.id}" aria-label="Fechar vídeo e ver capa">${ICONS.close}<span>Fechar vídeo</span></button>
+        `;
+        mediaView.style.display = "none";
+        playerFrame.style.display = "flex";
+        return;
+      }
+
+      // 2. Alternar para o player do Spotify via snippet iframe oficial
+      if (switchMode === "spotify") {
+        if (!item.spotifyUrl || !playerFrame || !mediaView) return;
+        playerFrame.innerHTML = `
+          ${getSpotifyEmbedSnippet(item.spotifyUrl, item.title)}
+          <button type="button" class="rec-player-close-btn" data-action="close-player" data-item-id="${item.id}" aria-label="Fechar player e ver capa">${ICONS.close}<span>Fechar player</span></button>
+        `;
+        mediaView.style.display = "none";
+        playerFrame.style.display = "flex";
+        return;
+      }
+
+      // 3. Voltar à capa original do YouTube
+      if (switchMode === "youtube") {
+        if (!playerFrame || !mediaView) return;
+        playerFrame.innerHTML = "";
+        playerFrame.style.display = "none";
+        mediaView.style.display = "block";
+        return;
+      }
+
+      // 4. Fechar player e interromper reprodução de mídia
+      if (action === "close-player") {
+        if (!playerFrame || !mediaView) return;
+        playerFrame.innerHTML = "";
+        playerFrame.style.display = "none";
+        mediaView.style.display = "block";
+        return;
+      }
+
+      // 5. Copiar snippet HTML para área de transferência
+      if (action === "copy-snippet") {
+        let snippet = "";
+        let label = "";
+
+        if (item.youtubeUrl && item.spotifyUrl) {
+          const ytCode = getYouTubeEmbedSnippet(item.youtubeUrl, item.title, false);
+          const spCode = getSpotifyEmbedSnippet(item.spotifyUrl, item.title);
+          snippet = `<!-- Snippet YouTube: ${item.title} -->\n${ytCode}\n\n<!-- Snippet Spotify: ${item.title} -->\n${spCode}`;
+          label = "Snippets HTML do YouTube e Spotify";
+        } else if (item.youtubeUrl) {
+          snippet = `<!-- Snippet YouTube: ${item.title} -->\n${getYouTubeEmbedSnippet(item.youtubeUrl, item.title, false)}`;
+          label = "Snippet HTML do YouTube";
+        } else if (item.spotifyUrl) {
+          snippet = `<!-- Snippet Spotify: ${item.title} -->\n${getSpotifyEmbedSnippet(item.spotifyUrl, item.title)}`;
+          label = "Snippet HTML do Spotify";
+        }
+
+        if (snippet) {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(snippet)
+              .then(() => {
+                showToast(`${label} copiado! Pronto para incorporar.`);
+              })
+              .catch(() => {
+                prompt("Copie o código do snippet HTML abaixo:", snippet);
+              });
+          } else {
+            prompt("Copie o código do snippet HTML abaixo:", snippet);
+          }
+        }
+        return;
+      }
+    }
+
+    // Vincula a delegação de cliques na grade principal e no modal
+    document.getElementById("mainGrid").addEventListener("click", handleCardInteraction);
+    document.getElementById("modalGrid").addEventListener("click", handleCardInteraction);
 
     function applyFilters() {
       const filtered = recommendations.filter((item) => {
@@ -1962,7 +2519,7 @@
       if (filtered.length === 0) {
         mainGrid.innerHTML = `
           <div class="empty-state">
-            <span class="empty-state-icon" aria-hidden="true">🌱</span>
+            <span class="empty-state-icon" aria-hidden="true">${ICONS.searchX}</span>
             <h3 class="empty-state-title">Nenhuma recomendação encontrada</h3>
             <p class="empty-state-desc">
               Não encontramos nenhum conteúdo com os filtros ou termo de busca atuais. Tente buscar por outros termos como "Dunker", "Freire", "6x1" ou limpar o filtro.
